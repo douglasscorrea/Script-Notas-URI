@@ -2,40 +2,9 @@
 import os
 import re
 import csv
-import sys
+import students
 import unicodedata
 
-m1 = [	"Alejandro Tomas Reyes Alberoni", "Alessandra Rosa Galvao", "Bruno Silva Volcan", "Bruno Ramos Martins",
-		"Diulia Justin Deon", "Douglas Henrique Santos Lima", "Edilayne Samara Santos Tavares Caetano",
-		"Frederico Dal Soglio Reckziegel", "Gabriela Lucena Fernandes", "Gabriele da Silva Lucas", 
-		"Guilherme dos Santos Vahl", "Guilherme Goulart Quincozes", "Henrique Morales do Carmo",
-		"Italo Teixeira da Silveira", "Joao Antonio Neves Soares",  "Joao Pedro de Morais da Silveira", 
-		"Joao Pedro Pires Medeiros", "Joao Vitor Dias Masquevite", "Joao Vitor Lima Araujo da Silva", 
-		"Kaio Ferordi Mazza", "Kayara da Silveira Pereira", "Leandro Weber Tavares", "Lenon Rodrigues Koperek",
-		"Leonardo dos Santos Guths"]
-m2 = [	"Eduardo Weymar Garcia", "Hiago Schroder Mulling", "Lucas Lima", "Lucas Viscardi Marques", 
-		"Lucas Wotter Olive Leite", "Marcelo da Silva Dias", "Marcelo Pereira Vargas Rodrigues", 
-		"Murillo Aleixo Motta", "Nicolas Costa Goncalves", "Pedro da Luz Kaster", "Pedro Zanchin Baldissera", 
-		"Rafael Machado Candia", "Rafael Montagna Copes", "Renata Torres Abib Bertacco", "Rogerio Faria Otto", 
-		"Thiago Nunes Batista", "Vinicius Caldas Wrege", "Vitoria da Silva Mota", "Yuri de Melo Zorzoli Nunes"]
-m3 = [	"Aline Conceicao da Silva", "Andre Pereira Rodrigues", "Artur Machado de Souza", "Arthur Varga Teles",
-		"Arthur Weirich", "Caua Avila da Silva", "Dionata Bergmann Podewils", "Douglas Souza Gomes",
-		"Eduardo dos Santos Montenegro Barbosa", "Eduardo Nicoletti Borges", "Eloisa Leal Barros", 
-		"Erik Silveira Braga", "Gabriel Sodre de Moura", "Glauco Soares Pantoni", "Gustavo Tessmer Loper", 
-		"Hector Hudson Diniz Fernandes", "Igor Henrique Deon da Rosa", "Igor Yuji Ishihara Sakuma", 
-		"Joao Lucas da Costa Fagundes", "Joao Pedro Valejo dos Santos", "Julia Manoela Pereira Jambeiro",
-		"Leonardo Antonietti Ferreira", "Matheus Oliveira da Rosa"]
-m4 = [	"Gabriel Ferreira Amaral", "Hyhickle Ryozo Umetsubo Goncalves", "Klaus Wagner Irion", 
-		"Lucas Dias dos Santos", "Lucas Jose do Prado Souza", "Lucas Seidy Ribeiro dos Santos Ikenoue", 
-		"Luis Artur Mendes Garcez", "Lyandra da Cruz de Souza", "Maicon Roberto da Luz Coimbra", 
-		"Matheus Silva Menezes", "Mauricio Carvalho Mucci", "Pablo Leitzke Norenberg", 
-		"Rafael Carvalho Somenzari Ginjas Camargo Muniz", "Rafael Grimmler da Rocha", "Thiago Souza Oliveira", 
-		"Vitor de Melo Mandowski", "Willian do Espirito Santo Rodrigues", "Yasmin Rodrigues Martins"]
-
-#grade_1 = 600
-#grade_2 = 800
-#grade_3 = 0
-#max_grade = grade_1 + grade_2 + grade_3
 grades_m1 = {}
 grades_m2 = {}
 grades_m3 = {}
@@ -61,26 +30,28 @@ def text_to_id(text):
 
     return text
 
+
 def create_dict(grad_class):
 	""" Creat dictionary for each class with all students names """
 	if grad_class == "m1":
-		for name in m1:
+		for name in students.m1:
 			name = text_to_id(name)
 			grades_m1[name] = []
 	elif grad_class == "m2":
-		for name in m2:
+		for name in students.m2:
 			name = text_to_id(name)
 			grades_m2[name] = []
 	elif grad_class == "m3":
-		for name in m3:
+		for name in students.m3:
 			name = text_to_id(name)
 			grades_m3[name] = []
 	elif grad_class == "m4":
-		for name in m4:
+		for name in students.m4:
 			name = text_to_id(name)
 			grades_m4[name] = []
 	else:
 		print("Turma Inválida.")
+
 
 def open_file(grad_class):
 	""" 
@@ -89,20 +60,17 @@ def open_file(grad_class):
 	"""
 	try:
 		number_files = next(os.walk("data"))[2]
+
 		for i in range(1, len(number_files)):
-			print("data/lista_" + str(i) + ".csv")
 			with open("data/lista_" + str(i) + ".csv") as fp:
 				file_data = fp.readlines()
 				parse_file(file_data, grad_class)
-
 			fp.close()
-
-
-			#print rows
 	except IOError:
 		print("O arquivo informado não é válido. Verificar caminho e nome.")
 		print("O arquivo deve estar dentro do diretório data dentro da pasta do script. Informar somente o nome do arquivo.")
 		exit()
+
 
 def parse_file(file_data, grad_class):
 	"""
@@ -119,23 +87,25 @@ def parse_file(file_data, grad_class):
 
 		save_grade(name, grade, grad_class)
 
+
 def save_grade(name, grade, grad_class):
 	"""	Save the student's grades if name is correctly informes """
 	#print(name)
 	#print(grade)
 	if grad_class == "m1":
-		if name in m1:
+		if name in students.m1:
 			grades_m1[name].append(grade)
 	elif grad_class == "m2":
-		if name in m2:
+		if name in students.m2:
 			grades_m2[name].append(grade)
 	elif grad_class == "m3":
-		if name in m3:
+		if name in students.m3:
 			grades_m3[name].append(grade)
 	elif grad_class == "m4":
-		if name in m4:
+		if name in students.m4:
 			grades_m4[name].append(grade)
-	
+
+
 def calculate_average(grad_class):
 	""" 
 	Calculates grade's average
@@ -157,56 +127,49 @@ def calculate_average(grad_class):
 			if len(grades_m4[name]) > 0:
 				grades_m4[name].append(round(sum(grades_m4[name])/len(grades_m4[name]), 2))
 
+
 def write_grades_to_csv(grad_class):
 	""" Write all the grades in the corresponding csv file. """
+	number_files = next(os.walk("data"))[2]
+
+	write_file = open("grades_" + grad_class + ".csv", 'w')
+	write_file.write("AeP 2019/1 - " + grad_class + ";Notas\n")
+	write_file.write("Nome;")
+	for i in range(1, len(number_files)):
+		write_file.write("Lista " + str(i) + ";")
+	write_file.write("Media\n")
+
 	if grad_class == "m1":
 		print("------- Notas M1 -------")
-		write_file = open('grades_m1.csv', 'w')
-		write_file.write("AeP 2019/1 - M1;Notas\n")
-		write_file.write("Nome;Lista 1;Lista 2;Media\n")
-
 		for name in grades_m1:
 			print(name.title() + ": " + str(grades_m1[name]))
 			write_file.write(name.title() + ";" + str(grades_m1[name])[1:-1].replace(", ", ";") + "\n")
 	elif grad_class == "m2":
 		print("------- Notas M2 -------")
-		write_file = open('grades_m2.csv', 'w')
-		write_file.write("AeP 2019/1 - M2;Notas\n")
-		write_file.write("Nome;Lista 1;Lista 2;Media\n")
-
 		for name in grades_m2:
 			print(name.title() + ": " + str(grades_m2[name]))
 			write_file.write(name.title() + ";" + str(grades_m2[name])[1:-1].replace(", ", ";") + "\n")
 	elif grad_class == "m3":
 		print("------- Notas M3 -------")
-		write_file = open('grades_m3.csv', 'w')
-		write_file.write("AeP 2019/1 - M3;Notas\n")
-		write_file.write("Nome;Lista 1;Lista 2;Media\n")
-
 		for name in grades_m3:
 			print(name.title() + ": " + str(grades_m3[name]))
 			write_file.write(name.title() + ";" + str(grades_m3[name])[1:-1].replace(", ", ";") + "\n")
 	elif grad_class == "m4":
 		print("------- Notas M4 -------")
-		write_file = open('grades_m4.csv', 'w')
-		write_file.write("AeP 2019/1 - M4;Notasw\n")
-		write_file.write("Nome;Lista 1;Lista 2;Media\n")
-
 		for name in grades_m4:
 			print(name.title() + ": " + str(grades_m4[name]))
 			write_file.write(name.title() + ";" + str(grades_m4[name])[1:-1].replace(", ", ";") + "\n")
 
+
 def generate_grade(grad_class):
 	""" 
-	Main function
-	Write the name and grade of all students accordingly to the class (m1, m2, m3, m4)
+	Write the name and grade of all students accordingly to the class 
+	(m1, m2, m3, m4, all) 
 	"""
-	global m1, m2, m3, m4
-
-	m1 = list_to_lower_case(m1)
-	m2 = list_to_lower_case(m2)
-	m3 = list_to_lower_case(m3)
-	m4 = list_to_lower_case(m4)
+	students.m1 = list_to_lower_case(students.m1)
+	students.m2 = list_to_lower_case(students.m2)
+	students.m3 = list_to_lower_case(students.m3)
+	students.m4 = list_to_lower_case(students.m4)
 		
 	if grad_class == "all":
 		generate_grade("m1")
@@ -219,6 +182,7 @@ def generate_grade(grad_class):
 		calculate_average(grad_class)
 		write_grades_to_csv(grad_class)
 
+
 def list_to_lower_case(list):
 	""" Transform all items of a list to lower case """
 	new_list = []
@@ -227,24 +191,4 @@ def list_to_lower_case(list):
 
 	#print(new_list)
 	return new_list
-
-if len(sys.argv) == 1:
-	print("Para gerar as notas utilizar os seguintes formatos:")
-	print("\t python3 script.py <turma>")
-	print("\t Para gerar notas de todas as turmas usar o argumento \"all\"")
-	exit();
-elif sys.argv[1] == "-help":
-	print("Para gerar as notas utilizar os seguintes formatos:")
-	print("\t python3 script.py <turma>")
-	print("\t Para gerar as notas de todas as turmas usar o argumento \"all\"")
-	exit();
-elif len(sys.argv) == 1:
-	generate_grade("all")
-elif len(sys.argv) == 2:
-	generate_grade(sys.argv[1])
-else:
-	print("Argumentos invalidos. Utilizar os seguintes formatos:")
-	print("\t python3 script.py <turma>")
-	print("\t Para gerar notas de todas as turmas usar o argumento \"all\"")
-	exit();
 
