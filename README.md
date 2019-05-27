@@ -13,10 +13,18 @@ lista_2.csv
 lista_n.csv
 ```
 # Como utilizar
-O script necessita do *python* na versão 3 para ser utilizado. Para rodar, utilizar o seguinte comando:
+Para melhor entendimento o script foi separado em 3 arquivos: **main.py**, **generate_grades.py** e **students.py**.
+O arquivo **main.py** é responsável por verificar os argumentos colocados na linha de comando e por rodar o script para gerar as notas. 
+O arquivo **generate_grades.py** contem as funções utilizadas para gerar as notas. 
+O arquivo **students.py** contem a lista de turmas com os respectivos alunos para verificação de nome feita pelo script.
+
+## Como rodar o script
+O script necessita do *python* na versão 3 para ser utilizado. Para rodar, executar o seguinte comando:
 ``` 
-python3 generate_grades.py <arg>
+python3 main.py <arg>
 ```
+
+## Parâmetros aceitos
 O argumento **arg** corresponde a qual turma terá a nota gerada. Os seguintes argumentos são aceitos:
 
  - m1: gerar as notas para a turma m1
