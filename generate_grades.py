@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 import re
 import csv
 import sys
@@ -87,14 +88,15 @@ def open_file(grad_class):
 	Calls the parsing method
 	"""
 	try:
-		with open("data/lista_1.csv") as fp:
-			file_data = fp.readlines()
-			parse_file(file_data, grad_class)
-		fp.close()
-		with open("data/lista_2.csv") as fp:
-			file_data = fp.readlines()
-			parse_file(file_data, grad_class)
-		fp.close()
+		number_files = next(os.walk("data"))[2]
+		for i in range(1, len(number_files)):
+			print("data/lista_" + str(i) + ".csv")
+			with open("data/lista_" + str(i) + ".csv") as fp:
+				file_data = fp.readlines()
+				parse_file(file_data, grad_class)
+
+			fp.close()
+
 
 			#print rows
 	except IOError:
@@ -141,19 +143,19 @@ def calculate_average(grad_class):
 	if grad_class == "m1":
 		for name in grades_m1:
 			if len(grades_m1[name]) > 0:
-				grades_m1[name].append(sum(grades_m1[name])/len(grades_m1[name]))
+				grades_m1[name].append(round(sum(grades_m1[name])/len(grades_m1[name]), 2))
 	elif grad_class == "m2":
 		for name in grades_m2:
 			if len(grades_m2[name]) > 0:
-				grades_m2[name].append(sum(grades_m2[name])/len(grades_m2[name]))
+				grades_m2[name].append(round(sum(grades_m2[name])/len(grades_m2[name]), 2))
 	elif grad_class == "m3":
 		for name in grades_m3:
 			if len(grades_m3[name]) > 0:
-				grades_m3[name].append(sum(grades_m3[name])/len(grades_m3[name]))
+				grades_m3[name].append(round(sum(grades_m3[name])/len(grades_m3[name]), 2))
 	elif grad_class == "m4":
 		for name in grades_m4:
 			if len(grades_m4[name]) > 0:
-				grades_m4[name].append(sum(grades_m4[name])/len(grades_m4[name]))
+				grades_m4[name].append(round(sum(grades_m4[name])/len(grades_m4[name]), 2))
 
 def write_grades_to_csv(grad_class):
 	""" Write all the grades in the corresponding csv file. """
