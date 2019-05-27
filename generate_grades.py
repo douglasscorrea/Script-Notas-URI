@@ -4,12 +4,6 @@ import csv
 import sys
 import unicodedata
 
-if len(sys.argv) < 4:
-	print("\tArgumentos incorretos. Utilizar o formato: python3 script.py <arquivo_com_notas.csv> <turma> <pontuacao_maxima>")
-	print("\tExemplo: python3 script.py notas.csv m1 1400")
-	print("\tA pontuação máxima está disponível no URI no fim da página principal da disciplina")
-	exit();
-
 m1 = [	"Alejandro Tomas Reyes Alberoni", "Alessandra Rosa Galvao", "Bruno Silva Volcan", "Bruno Ramos Martins",
 		"Diulia Justin Deon", "Douglas Henrique Santos Lima", "Edilayne Samara Santos Tavares Caetano",
 		"Frederico Dal Soglio Reckziegel", "Gabriela Lucena Fernandes", "Gabriele da Silva Lucas", 
@@ -37,7 +31,10 @@ m4 = [	"Gabriel Ferreira Amaral", "Hyhickle Ryozo Umetsubo Goncalves", "Klaus Wa
 		"Rafael Carvalho Somenzari Ginjas Camargo Muniz", "Rafael Grimmler da Rocha", "Thiago Souza Oliveira", 
 		"Vitor de Melo Mandowski", "Willian do Espirito Santo Rodrigues", "Yasmin Rodrigues Martins"]
 
-max_grade = int(sys.argv[3])
+#grade_1 = 600
+#grade_2 = 800
+#grade_3 = 0
+#max_grade = grade_1 + grade_2 + grade_3
 grades_m1 = {}
 grades_m2 = {}
 grades_m3 = {}
@@ -68,38 +65,42 @@ def create_dict(grad_class):
 	if grad_class == "m1":
 		for name in m1:
 			name = text_to_id(name)
-			grades_m1[name] = 0
+			grades_m1[name] = []
 	elif grad_class == "m2":
 		for name in m2:
 			name = text_to_id(name)
-			grades_m2[name] = 0
+			grades_m2[name] = []
 	elif grad_class == "m3":
 		for name in m3:
 			name = text_to_id(name)
-			grades_m3[name] = 0
+			grades_m3[name] = []
 	elif grad_class == "m4":
 		for name in m4:
 			name = text_to_id(name)
-			grades_m4[name] = 0
+			grades_m4[name] = []
 	else:
 		print("Turma Inválida.")
 
-def open_file(file_name, grad_class):
+def open_file(grad_class):
 	""" 
 	Try to open the csv file with the grades 
 	Calls the parsing method
 	"""
 	try:
-		file_name = file_name.split("/")[1]
-		with open("data/" + file_name) as fp:
+		with open("data/lista_1.csv") as fp:
 			file_data = fp.readlines()
+			parse_file(file_data, grad_class)
+		fp.close()
+		with open("data/lista_2.csv") as fp:
+			file_data = fp.readlines()
+			parse_file(file_data, grad_class)
+		fp.close()
+
 			#print rows
 	except IOError:
 		print("O arquivo informado não é válido. Verificar caminho e nome.")
 		print("O arquivo deve estar dentro do diretório data dentro da pasta do script. Informar somente o nome do arquivo.")
 		exit()
-
-	parse_file(file_data, grad_class)
 
 def parse_file(file_data, grad_class):
 	"""
@@ -112,29 +113,88 @@ def parse_file(file_data, grad_class):
 		# row[7] = nota
 		row = row.split(";")
 		name = text_to_id((str(row[2]).replace('"', '')).casefold())
-		grade = round((float(row[7])/max_grade)*10, 2)
+		grade = round((float(row[7])/float(row[8]))*10, 2)
 
 		save_grade(name, grade, grad_class)
 
 def save_grade(name, grade, grad_class):
-	"""	Save the student's grade if name is correctly informes """
+	"""	Save the student's grades if name is correctly informes """
 	#print(name)
 	#print(grade)
 	if grad_class == "m1":
 		if name in m1:
-			grades_m1[name] = grade
+			grades_m1[name].append(grade)
 	elif grad_class == "m2":
 		if name in m2:
-			grades_m2[name] = grade
+			grades_m2[name].append(grade)
 	elif grad_class == "m3":
 		if name in m3:
-			grades_m3[name] = grade
+			grades_m3[name].append(grade)
 	elif grad_class == "m4":
 		if name in m4:
-			grades_m4[name] = grade
+			grades_m4[name].append(grade)
 	
+def calculate_average(grad_class):
+	""" 
+	Calculates grade's average
+	"""
+	if grad_class == "m1":
+		for name in grades_m1:
+			if len(grades_m1[name]) > 0:
+				grades_m1[name].append(sum(grades_m1[name])/len(grades_m1[name]))
+	elif grad_class == "m2":
+		for name in grades_m2:
+			if len(grades_m2[name]) > 0:
+				grades_m2[name].append(sum(grades_m2[name])/len(grades_m2[name]))
+	elif grad_class == "m3":
+		for name in grades_m3:
+			if len(grades_m3[name]) > 0:
+				grades_m3[name].append(sum(grades_m3[name])/len(grades_m3[name]))
+	elif grad_class == "m4":
+		for name in grades_m4:
+			if len(grades_m4[name]) > 0:
+				grades_m4[name].append(sum(grades_m4[name])/len(grades_m4[name]))
 
-def generate_grade(file_name, grad_class):
+def write_grades_to_csv(grad_class):
+	""" Write all the grades in the corresponding csv file. """
+	if grad_class == "m1":
+		print("------- Notas M1 -------")
+		write_file = open('grades_m1.csv', 'w')
+		write_file.write("AeP 2019/1 - M1;Notas\n")
+		write_file.write("Nome;Lista 1;Lista 2;Media\n")
+
+		for name in grades_m1:
+			print(name.title() + ": " + str(grades_m1[name]))
+			write_file.write(name.title() + ";" + str(grades_m1[name])[1:-1].replace(", ", ";") + "\n")
+	elif grad_class == "m2":
+		print("------- Notas M2 -------")
+		write_file = open('grades_m2.csv', 'w')
+		write_file.write("AeP 2019/1 - M2;Notas\n")
+		write_file.write("Nome;Lista 1;Lista 2;Media\n")
+
+		for name in grades_m2:
+			print(name.title() + ": " + str(grades_m2[name]))
+			write_file.write(name.title() + ";" + str(grades_m2[name])[1:-1].replace(", ", ";") + "\n")
+	elif grad_class == "m3":
+		print("------- Notas M3 -------")
+		write_file = open('grades_m3.csv', 'w')
+		write_file.write("AeP 2019/1 - M3;Notas\n")
+		write_file.write("Nome;Lista 1;Lista 2;Media\n")
+
+		for name in grades_m3:
+			print(name.title() + ": " + str(grades_m3[name]))
+			write_file.write(name.title() + ";" + str(grades_m3[name])[1:-1].replace(", ", ";") + "\n")
+	elif grad_class == "m4":
+		print("------- Notas M4 -------")
+		write_file = open('grades_m4.csv', 'w')
+		write_file.write("AeP 2019/1 - M4;Notasw\n")
+		write_file.write("Nome;Lista 1;Lista 2;Media\n")
+
+		for name in grades_m4:
+			print(name.title() + ": " + str(grades_m4[name]))
+			write_file.write(name.title() + ";" + str(grades_m4[name])[1:-1].replace(", ", ";") + "\n")
+
+def generate_grade(grad_class):
 	""" 
 	Main function
 	Write the name and grade of all students accordingly to the class (m1, m2, m3, m4)
@@ -145,45 +205,17 @@ def generate_grade(file_name, grad_class):
 	m2 = list_to_lower_case(m2)
 	m3 = list_to_lower_case(m3)
 	m4 = list_to_lower_case(m4)
-
-	if grad_class == "m1":
-		create_dict(grad_class)
-		open_file(file_name, grad_class)
-		write_file = open('notas_m1.csv', 'w')
-		write_file.write("AeP 2019/1 - M1\n")
-		write_file.write("Nome;Nota (Lista 1 + Lista 2)\n")
-		for name in grades_m1:
-			write_file.write(name.title() + ";" + str(grades_m1[name]) + "\n")
-			print(name.title() + ": " + str(grades_m1[name]))
-	elif grad_class == "m2":
-		create_dict(grad_class)
-		open_file(file_name, grad_class)
-		write_file = open('notas_m2.csv', 'w')
-		write_file.write("AeP 2019/1 - M2\n")
-		write_file.write("Nome;Nota (Lista 1 + Lista 2)\n")
-		for name in grades_m2:
-			write_file.write(name.title() + ";" + str(grades_m2[name]) + "\n")
-			print(name.title() + ": " + str(grades_m2[name]))
-	elif grad_class == "m3":
-		create_dict(grad_class)
-		open_file(file_name, grad_class)
-		write_file = open('notas_m3.csv', 'w')
-		write_file.write("AeP 2019/1 - M3\n")
-		write_file.write("Nome;Nota (Lista 1 + Lista 2)\n")
-		for name in grades_m3:
-			write_file.write(name.title() + ";" + str(grades_m3[name]) + "\n")
-			print(name.title() + ": " + str(grades_m3[name]))
-	elif grad_class == "m4":
-		create_dict(grad_class)
-		open_file(file_name, grad_class)
-		write_file = open('notas_m4.csv', 'w')
-		write_file.write("AeP 2019/1 - M4\n")
-		write_file.write("Nome;Nota (Lista 1 + Lista 2)\n")
-		for name in grades_m4:
-			write_file.write(name.title() + ";" + str(grades_m4[name]) + "\n")
-			print(name.title() + ": " + str(grades_m4[name]))
+		
+	if grad_class == "all":
+		generate_grade("m1")
+		generate_grade("m2")
+		generate_grade("m3")
+		generate_grade("m4")
 	else:
-		print("Turma informada inválida.")
+		create_dict(grad_class)
+		open_file(grad_class)
+		calculate_average(grad_class)
+		write_grades_to_csv(grad_class)
 
 def list_to_lower_case(list):
 	""" Transform all items of a list to lower case """
@@ -194,5 +226,18 @@ def list_to_lower_case(list):
 	#print(new_list)
 	return new_list
 
-generate_grade(sys.argv[1], sys.argv[2])
+if sys.argv[1] == "-help":
+	print("Para gerar as notas utilizar os seguintes formatos:")
+	print("\t python3 script.py <turma>")
+	print("\t Para gerar notas de todas as turmas usar o argumento \"all\"")
+	exit();
+elif len(sys.argv) == 1:
+	generate_grade("all")
+elif len(sys.argv) == 2:
+	generate_grade(sys.argv[1])
+else:
+	print("Argumentos invalidos. Utilizar os seguintes formatos:")
+	print("\t python3 script.py <turma>")
+	print("\t Para gerar notas de todas as turmas usar o argumento \"all\"")
+	exit();
 
