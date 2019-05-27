@@ -226,10 +226,15 @@ def list_to_lower_case(list):
 	#print(new_list)
 	return new_list
 
-if sys.argv[1] == "-help":
+if len(sys.argv) == 1:
 	print("Para gerar as notas utilizar os seguintes formatos:")
 	print("\t python3 script.py <turma>")
 	print("\t Para gerar notas de todas as turmas usar o argumento \"all\"")
+	exit();
+elif sys.argv[1] == "-help":
+	print("Para gerar as notas utilizar os seguintes formatos:")
+	print("\t python3 script.py <turma>")
+	print("\t Para gerar as notas de todas as turmas usar o argumento \"all\"")
 	exit();
 elif len(sys.argv) == 1:
 	generate_grade("all")
