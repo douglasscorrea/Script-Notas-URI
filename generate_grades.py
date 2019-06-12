@@ -180,6 +180,7 @@ def generate_grade(grad_class):
 		create_dict(grad_class)
 		open_file(grad_class)
 		calculate_average(grad_class)
+		change_grade_plagiarism(grad_class)
 		write_grades_to_csv(grad_class)
 
 
@@ -191,4 +192,47 @@ def list_to_lower_case(list):
 
 	#print(new_list)
 	return new_list
+
+
+def change_grade_plagiarism(grad_class):
+	if grad_class == "m1":
+		for student in students.m1_l3_plagiarism:
+			name = text_to_id(student)
+			grades_m1[name+"*"] = grades_m1[name]
+
+			if len(grades_m1[name+"*"]) == 3:
+				#print(name+"*")
+				grades_m1[name+"*"][2] = 0
+
+			del grades_m1[name]
+	elif grad_class == "m2":		
+		for student in students.m2_l3_plagiarism:
+			name = text_to_id(student)	
+			grades_m2[name+"*"] = grades_m2[name]
+
+			if len(grades_m2[name+"*"]) == 3:
+				#print(name+"*")
+				grades_m2[name+"*"][2] = 0
+				
+			del grades_m2[name]
+	elif grad_class == "m3":
+		for student in students.m3_l3_plagiarism:
+			name = text_to_id(student)
+			grades_m3[name+"*"] = grades_m3[name]
+
+			if len(grades_m3[name+"*"]) == 3:
+				#print(name+"*")
+				grades_m3[name+"*"][2] = 0
+				
+			del grades_m3[name]
+	elif grad_class == "m4":
+		for student in students.m4_l3_plagiarism:
+			name = text_to_id(student)
+			grades_m4[name+"*"] = grades_m4[name]
+
+			if len(grades_m4[name+"*"]) == 3:
+				#print(name+"*")
+				grades_m4[name+"*"][2] = 0
+				
+			del grades_m4[name]
 

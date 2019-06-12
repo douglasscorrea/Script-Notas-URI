@@ -24,3 +24,9 @@ m4 = [	"Gabriel Ferreira Amaral", "Hyhickle Ryozo Umetsubo Goncalves", "Klaus Wa
 		"Matheus Silva Menezes", "Mauricio Carvalho Mucci", "Pablo Leitzke Norenberg", 
 		"Rafael Carvalho Somenzari Ginjas Camargo Muniz", "Rafael Grimmler da Rocha", "Thiago Souza Oliveira", 
 		"Vitor de Melo Mandowski", "Willian do Espirito Santo Rodrigues", "Yasmin Rodrigues Martins"]
+
+m1_l3_plagiarism = [	"Alessandra Rosa Galvao", "Frederico Dal Soglio Reckziegel", "Gabriela Lucena Fernandes", 
+						"Gabriele da Silva Lucas", "Joao Antonio Neves Soares", "Kayara da Silveira Pereira"]
+m2_l3_plagiarism = [	"Rafael Machado Candia", ]
+m3_l3_plagiarism = [	"Matheus Oliveira da Rosa", "Gustavo Tessmer Loper", "Eloisa Leal Barros"]
+m4_l3_plagiarism = [	"Lucas Dias dos Santos"]
