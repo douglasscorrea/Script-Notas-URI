@@ -1,5 +1,5 @@
 id;uri;students;exercises;solved;"tried (but not solved)";percentage;score;total_score
-342206;342206;"Alejandro Alberoni";3;1;2;16.666666666667;100;600
+342206;342206;"Alejandro Tomas Reyes Alberoni";3;1;2;16.666666666667;100;600
 342208;342208;"Alessandra Rosa Galvão";6;1;5;16.666666666667;100;600
 340877;340877;"Aline Conceição da Silva";6;4;2;66.666666666667;400;600
 344774;344774;"Alita Sieburger";2;0;2;0;0;600
@@ -8,8 +8,8 @@ id;uri;students;exercises;solved;"tried (but not solved)";percentage;score;total
 342934;342934;"Arthur Vargas Teles";6;6;0;100;600;600
 342936;342936;"Arthur Weirich";6;6;0;100;600;600
 343007;343007;"Artur Mendes";6;6;0;100;600;600
+342197;342197;"Bruno da Silva Volcan";6;6;0;100;600;600
 342204;342204;"Bruno Ramos Martins";6;6;0;100;600;600
-342197;342197;"Bruno Volcan";6;6;0;100;600;600
 342938;342938;"Cauã Ávila da Silva";6;6;0;100;600;600
 327521;327521;"Dionatã Bergmann Podewils";6;6;0;100;600;600
 342196;342196;"Diulia Justin Deon";6;4;2;66.666666666667;400;600
@@ -18,18 +18,18 @@ id;uri;students;exercises;solved;"tried (but not solved)";percentage;score;total
 342947;342947;"Douglas Souza Gomes";6;5;1;83.333333333333;500;600
 342200;342200;"Edilayne S. S. T. Caetano";3;3;0;50;300;600
 342929;342929;"Eduardo dos Santos Montenegro Barbosa";6;6;0;100;600;600
-342254;342254;"Eduardo Garcia";6;6;0;100;600;600
 342931;342931;"Eduardo Nicoletti Borges";6;6;0;100;600;600
+342254;342254;"Eduardo Weymar Garcia";6;6;0;100;600;600
 342937;342937;"Eloisa Leal Barros";6;6;0;100;600;600
 289135;289135;"Fernando Ribeiro";0;0;0;0;0;600
 342262;342262;"Frederico Dal Soglio";6;6;0;100;600;600
 342195;342195;"Gabriela Lucena Fernandes";6;6;0;100;600;600
-342188;342188;"Gabriele Silva";6;6;0;100;600;600
+342188;342188;"Gabriele da Silva Lucas";6;6;0;100;600;600
 352569;352569;"Gabriel Sodre";0;0;0;0;0;600
 342955;342955;"Glauco Pantoni";6;6;0;100;600;600
-153647;153647;"Guilherme Vahl";6;6;0;100;600;600
-342945;342945;"Gustavo loper";6;6;0;100;600;600
-330197;330197;"Hector Fernandes";6;6;0;100;600;600
+153647;153647;"Guilherme dos Santos Vahl";6;6;0;100;600;600
+342945;342945;"Gustavo Tessmer Löper";6;6;0;100;600;600
+330197;330197;"Hector Hudson DIniz Fernandes";6;6;0;100;600;600
 343103;343103;Henrique;6;6;0;100;600;600
 342258;342258;"Hiago Mulling";6;6;0;100;600;600
 342939;342939;"Hyhickle Ryozo Umetsubo Gonçalves";6;6;0;100;600;600
@@ -45,22 +45,22 @@ id;uri;students;exercises;solved;"tried (but not solved)";percentage;score;total
 342201;342201;"Joao Vitor Lima Araujo Da Sila";0;0;0;0;0;600
 342194;342194;"João Wasquevite";6;6;0;100;600;600
 342942;342942;"Julia Jambeiro";0;0;0;0;0;600
-257431;257431;"Kaio Mazza";2;1;1;16.666666666667;100;600
+257431;257431;"Kaio Ferordi Mazza";2;1;1;16.666666666667;100;600
 342202;342202;"kayara silveira";6;6;0;100;600;600
 342247;342247;"Leandro Weber Tavares";6;6;0;100;600;600
 344994;344994;"Lenon Koperek";2;2;0;33.333333333333;200;600
-342965;342965;"Leonardo Ferreira";6;6;0;100;600;600
-342249;342249;"Leonardo Guths";6;6;0;100;600;600
+342965;342965;"Leonardo Antonietti Ferreira";6;6;0;100;600;600
+342249;342249;"Leonardo dos Santos Guths";6;6;0;100;600;600
 343012;343012;"lucas ";6;5;1;83.333333333333;500;600
 343008;343008;"Lucas Dias dos Santos";6;6;0;100;600;600
 342271;342271;"Lucas Lima";1;0;1;0;0;600
-342243;342243;"Lucas Marques";6;6;0;100;600;600
 342265;342265;"Lucas Olivé Leite";1;1;0;16.666666666667;100;600
-341018;341018;"Lucas Seidy";6;6;0;100;600;600
+341018;341018;"Lucas Seidy Ribeiro dos Santos Ikenoue";6;6;0;100;600;600
+342243;342243;"Lucas Viscardi Marques";6;6;0;100;600;600
 343011;343011;"Lyandra Souza";6;6;0;100;600;600
 343009;343009;"Maicon Coimbra";6;5;1;83.333333333333;500;600
 342276;342276;"Marcelo da Silva Dias";6;6;0;100;600;600
-342282;342282;"Marcelo Rodrigues";6;6;0;100;600;600
+342282;342282;"Marcelo Pereira Vargas Rodrigues";6;6;0;100;600;600
 342933;342933;"Matheus Oliveira";6;6;0;100;600;600
 330717;330717;"Matheus S. Menezes";6;5;1;83.333333333333;500;600
 343010;343010;"Mauricio Mucci";6;6;0;100;600;600
@@ -69,16 +69,16 @@ id;uri;students;exercises;solved;"tried (but not solved)";percentage;score;total
 343013;343013;"Pablo Norenberg";4;0;4;0;0;600
 342264;342264;"Pedro Kaster";6;6;0;100;600;600
 342275;342275;"Pedro Zanchin Baldissera";6;5;1;83.333333333333;500;600
-342245;342245;"Rafael Candia";6;5;1;83.333333333333;500;600
 336747;336747;"Rafael Carvalho";6;6;0;100;600;600
 342964;342964;"Rafael Grimmler da Rocha";6;6;0;100;600;600
+342245;342245;"Rafael Machado Candia";6;5;1;83.333333333333;500;600
 342285;342285;"Rafael Montagna Copes";6;6;0;100;600;600
 344991;344991;"Renata Torres Abib Bertacco";3;3;0;50;300;600
 342260;342260;"Rogério Farias Otto";6;5;1;83.333333333333;500;600
 342268;342268;"Thiago Nunes Batista";6;6;0;100;600;600
 342932;342932;"Thiago Souza Oliveira";6;5;1;83.333333333333;500;600
-342237;342237;"Vinicius Wrege";6;6;0;100;600;600
+342237;342237;"Vinicius Caldas Wrege";6;6;0;100;600;600
 333995;333995;"Vítor De Melo Mandowski";6;6;0;100;600;600
-343006;343006;"Willian  Rodrigues";6;6;0;100;600;600
+343006;343006;"Willian do Espirito Santo Rodrigues";6;6;0;100;600;600
 343392;343392;"Yasmin Rodrigues Martins";6;4;2;66.666666666667;400;600
-342256;342256;"Yuri Nunes";6;6;0;100;600;600
+342256;342256;"Yuri de Melo Zorzoli Nunes";6;6;0;100;600;600
