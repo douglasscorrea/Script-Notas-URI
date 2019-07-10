@@ -113,6 +113,7 @@ def calculate_average(grad_class):
 	if grad_class == "m1":
 		for name in grades_m1:
 			if len(grades_m1[name]) > 0:
+				print()
 				grades_m1[name].append(round(sum(grades_m1[name])/len(grades_m1[name]), 2))
 	elif grad_class == "m2":
 		for name in grades_m2:
@@ -179,8 +180,8 @@ def generate_grade(grad_class):
 	else:
 		create_dict(grad_class)
 		open_file(grad_class)
-		calculate_average(grad_class)
 		change_grade_plagiarism(grad_class)
+		calculate_average(grad_class)
 		write_grades_to_csv(grad_class)
 
 
