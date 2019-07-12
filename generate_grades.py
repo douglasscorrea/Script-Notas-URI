@@ -141,22 +141,22 @@ def write_grades_to_csv(grad_class):
 
 	if grad_class == "m1":
 		print("------- Notas M1 -------")
-		for name in grades_m1:
+		for name in sorted(grades_m1):
 			print(name.title() + ": " + str(grades_m1[name]))
 			write_file.write(name.title() + ";" + str(grades_m1[name])[1:-1].replace(", ", ";") + "\n")
 	elif grad_class == "m2":
 		print("------- Notas M2 -------")
-		for name in grades_m2:
+		for name in sorted(grades_m2):
 			print(name.title() + ": " + str(grades_m2[name]))
 			write_file.write(name.title() + ";" + str(grades_m2[name])[1:-1].replace(", ", ";") + "\n")
 	elif grad_class == "m3":
 		print("------- Notas M3 -------")
-		for name in grades_m3:
+		for name in sorted(grades_m3):
 			print(name.title() + ": " + str(grades_m3[name]))
 			write_file.write(name.title() + ";" + str(grades_m3[name])[1:-1].replace(", ", ";") + "\n")
 	elif grad_class == "m4":
 		print("------- Notas M4 -------")
-		for name in grades_m4:
+		for name in sorted(grades_m4):
 			print(name.title() + ": " + str(grades_m4[name]))
 			write_file.write(name.title() + ";" + str(grades_m4[name])[1:-1].replace(", ", ";") + "\n")
 
@@ -179,8 +179,8 @@ def generate_grade(grad_class):
 	else:
 		create_dict(grad_class)
 		open_file(grad_class)
-		calculate_average(grad_class)
 		change_grade_plagiarism(grad_class)
+		calculate_average(grad_class)
 		write_grades_to_csv(grad_class)
 
 
